@@ -86,5 +86,5 @@ class sc2_lechita_1(sc2.BotAI):
 
 run_game(maps.get("Abyssal reef LE"), [
     Bot(Race.Protoss, sc2_lechita_1()),
-    Computer(Race.Protoss, Difficulty.Easy)
+    Computer(Race.Protoss, Difficulty.Medium)
 ], realtime=True )
