@@ -4,11 +4,16 @@ import random
 from sc2 import run_game, maps, Race, Difficulty
 from sc2.player import Bot, Computer
 from sc2.constants import NEXUS, PROBE, PYLON, ASSIMILATOR, \
-GATEWAY, CYBERNETICSCORE, STALKER
-
+GATEWAY, CYBERNETICSCORE, STALKER, VOIDRAY, STARGATE
+from examples.protoss.cannon_rush import CannonRushBot
 
 class sc2_lechita_1(sc2.BotAI):
+    def __init__(self):
+        self.ITERATIONS_PER_MINUTE = 165
+        self.MAX_WORKERS = 50
+
     async def on_step(self, iteration):
+        self.iteration = iteration
         await self.distribute_workers()
         await self.build_workers()
         await self.build_pylons()
@@ -19,7 +24,7 @@ class sc2_lechita_1(sc2.BotAI):
         await self.attack()
 
     async def build_workers(self):
-        if len(self.workers)<50:
+        if len(self.workers)<self.MAX_WORKERS:
             for nexus in self.units(NEXUS).ready.noqueue:
                 if self.can_afford(PROBE):
                     await self.do(nexus.train(PROBE))
@@ -44,7 +49,7 @@ class sc2_lechita_1(sc2.BotAI):
                     await self.do(worker.build(ASSIMILATOR, vespene))
 
     async def expand(self):
-        if self.units(NEXUS).amount < 3 and self.can_afford(NEXUS):
+        if self.units(NEXUS).amount < ((self.iteration*3)/self.ITERATIONS_PER_MINUTE) and self.can_afford(NEXUS):
             await self.expand_now()
 
     async def build_offensive_buildings(self):
@@ -55,18 +60,40 @@ class sc2_lechita_1(sc2.BotAI):
                 if self.can_afford(CYBERNETICSCORE) and not self.already_pending(CYBERNETICSCORE):
                     await self.build(CYBERNETICSCORE, near=pylon)
 
-            elif len(self.units(GATEWAY)) < 5:
+            elif len(self.units(GATEWAY)) < (self.iteration/self.ITERATIONS_PER_MINUTE):
                 if self.can_afford(GATEWAY) and not self.already_pending(GATEWAY):
                     await self.build(GATEWAY, near=pylon)
+
+            if len(self.units(STARGATE)) < (self.iteration/self.ITERATIONS_PER_MINUTE):
+                if self.can_afford(STARGATE) and not self.already_pending(STARGATE):
+                    await self.build(STARGATE, near=pylon)
 
 
     async def build_offensive_units(self):
         for gateway in self.units(GATEWAY).ready.noqueue:
             if self.can_afford(STALKER) and self.supply_left > 0:
-                await self.do(gateway.train(STALKER))
+                if not self.units(STALKER).amount>self.units(VOIDRAY).amount:
+                    await self.do(gateway.train(STALKER))
+        for stargate in self.units(STARGATE).ready.noqueue:
+            if self.can_afford(VOIDRAY) and self.supply_left > 0:
+                await self.do(stargate.train(VOIDRAY))
 
 
     async def attack(self):
+        aggressive_units = {STALKER: [15, 5],
+                            VOIDRAY: [8, 3]}
+
+        for UNIT in aggressive_units:
+            if self.units(UNIT).amount > aggressive_units[UNIT][0] and self.units(UNIT).amount > aggressive_units[UNIT][1]:
+                for single_unit in self.units(UNIT).idle:
+                    await self.do( single_unit.attack(self.find_target(self.state)))
+
+            elif self.units(UNIT).amount > aggressive_units[UNIT][1]:
+                if len(self.known_enemy_units) > 0:
+                    for  single_unit in self.units(UNIT).idle:
+                        await self.do(single_unit.attack(random.choice(self.known_enemy_units)))
+
+
         if self.units(STALKER).amount > 1:
             if len(self.known_enemy_units)>0:
                 for stalker in self.units(STALKER).idle:
@@ -86,5 +113,5 @@ class sc2_lechita_1(sc2.BotAI):
 
 run_game(maps.get("Abyssal reef LE"), [
     Bot(Race.Protoss, sc2_lechita_1()),
-    Computer(Race.Protoss, Difficulty.Medium)
-], realtime=True )
+    Bot(Race.Protoss, CannonRushBot())
+], realtime=False )
