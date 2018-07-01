@@ -1,11 +1,19 @@
 # SC2 bot
 
+This is the code for "" by KJN_for_YT
+
+
+## Overview
+
+This is the code for ... video on YouTube by KJN_for_YT. It's guide on how to build your first starcraft 2 ai bot.
+
+
 ## Requirements
 
-sc2 from: https://us.battle.net/account/download/
-install : pip install sc2
-download maps : https://github.com/Blizzard/s2client-proto#map-packs
-password : iagreetotheeula
+* sc2 from: https://us.battle.net/account/download/
+* install : pip install sc2
+* download maps : https://github.com/Blizzard/s2client-proto#map-packs
+* password : iagreetotheeula
 
 ## Authors
 
