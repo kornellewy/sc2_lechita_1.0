@@ -1,12 +1,15 @@
 # SC2 bot
 
-This is the code for "" by KJN_for_YT
+This is the code for "" by KJN_for_YT. Kod z polskimi komentarzami jest dostępny w pliku main_pl.py
 
 
-## Overview
+## Overview_en
 
 This is the code for ... video on YouTube by KJN_for_YT. It's guide on how to build your first starcraft 2 ai bot.
 
+## Overview_pl
+
+Kod jest do video … na platformie YouTube. Jest to poradnik ja zbudować swojego pierwszego bota ai do gry starcraft 2.
 
 ## Requirements
 
