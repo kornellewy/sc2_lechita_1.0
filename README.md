@@ -1,6 +1,6 @@
 # SC2 bot
 
-This is the code for "" by KJN_for_YT. Kod z polskimi komentarzami jest dostępny w pliku main_pl.py
+This is the code for "Ja zbudowac bota do starcraft 2 używając AI?" by KJN_for_YT. Kod z polskimi komentarzami jest dostępny w pliku main_pl.py
 
 
 ## Overview_en
