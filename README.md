@@ -1,4 +1,4 @@
-# SC2 bot
+# Starcraft 2 bot
 
 This is the code for "Ja zbudowac bota do starcraft 2 używając AI?" by KJN_for_YT. Kod z polskimi komentarzami jest dostępny w pliku main_pl.py
 
@@ -9,7 +9,7 @@ This is the code for ... video on YouTube by KJN_for_YT. It's guide on how to bu
 
 ## Overview_pl
 
-Kod jest do video … na platformie YouTube. Jest to poradnik ja zbudować swojego pierwszego bota ai do gry starcraft 2.
+Kod jest do video … na platformie YouTube. Jest to poradnik ja zbudować swojego pierwszego bota ai, do gry starcraft 2.
 
 ## Requirements
 
