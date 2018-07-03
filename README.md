@@ -5,11 +5,11 @@ This is the code for "Ja zbudowac bota do starcraft 2 używając AI?" by KJN_for
 
 ## Overview_en
 
-This is the code for https://www.youtube.com/watch?v=jZ52oR2_0gQ&feature=youtu.be video on YouTube by KJN_for_YT. It's guide on how to build your first starcraft 2 ai bot.
+This is the code for https://www.youtube.com/watch?v=pzLQu0yeZ5A video on YouTube by KJN_for_YT. It's guide on how to build your first starcraft 2 ai bot.
 
 ## Overview_pl
 
-Kod jest do video https://www.youtube.com/watch?v=jZ52oR2_0gQ&feature=youtu.be na platformie YouTube. Jest to poradnik ja zbudować swojego pierwszego bota ai, do gry starcraft 2.
+Kod jest do video https://www.youtube.com/watch?v=pzLQu0yeZ5A na platformie YouTube. Jest to poradnik ja zbudować swojego pierwszego bota ai, do gry starcraft 2.
 
 ## Requirements
 
